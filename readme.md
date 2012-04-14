@@ -8,9 +8,8 @@ Copy the config file to ``application/config/s3.php`` and input the proper infor
 
 ## Usage ##
 
-Check [here](https://github.com/tpyo/amazon-s3-php-class) for a list of all available methods.
+Check [here](https://github.com/tpyo/amazon-s3-php-class) for a list of all available methods.  Don't worry about authentication methods, the wrapper will handle that for you.
 
-Example:
 ```php
 S3::put_object($string, $bucket, $path, S3::ACL_PUBLIC_READ);
 ```
