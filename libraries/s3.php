@@ -5,7 +5,7 @@
  *
  * @package    S3
  * @author     Scott Travis <scott.w.travis@gmail.com>
- * @link       http://github.com/swt83
+ * @link       http://github.com/swt83/laravel-s3
  * @license    MIT License
  */
 
@@ -24,12 +24,17 @@ class S3
 		require_once(__DIR__.'/../vendor/s3.php');
 	
 		// load config
-		$config = Config::get('s3::s3');
+		$config = Config::get('s3'); // from application, not bundle
 		
 		// build object
 		$s3 = new Amazon\S3($config['access_key'], $config['secret_key']);
 		
 		// return
-		return call_user_func_array(array($s3, $method), $args);
+		return call_user_func_array(array($s3, self::camelize($method)), $args);
+	}
+	
+	private static function camelize($word)
+	{
+		return lcfirst(preg_replace('/(^|_)(.)/e', "strtoupper('\\2')", strval($word)));
 	}
 }

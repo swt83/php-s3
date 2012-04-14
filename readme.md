@@ -1,17 +1,16 @@
 # Amazon S3 for LaravelPHP #
 
-This is a simple Laravel wrapper for using Donovan Schönknecht's Amazon S3 class.
+This is a simple wrapper for using [Donovan Schönknecht's Amazon S3 class](https://github.com/tpyo/amazon-s3-php-class).
 
-## Installation & Usage ##
+## Install ##
 
-Install the bundle, setup the config file, and then check [Donovan Schönknecht's Github Page](https://github.com/tpyo/amazon-s3-php-class) for the available methods.
+Copy the config file to ``application/config/s3.php`` and input the proper information.
 
-Just call the methods direct, don't worry about the ``new S3()`` or ``S3::setAuth()`` class prep methods, those will automatically be handled by the wrapper.
+## Usage ##
 
-## Upkeep ##
+Check [here](https://github.com/tpyo/amazon-s3-php-class) for a list of all available methods.
 
-To update the class w/ any new revisions by Donovan, replace ``vendors/s3.php`` with the latest file and perform the following steps:
-
-* Add ``namespace Amazon;`` to the top of the file.
-* Add ``\`` to all ``stdClass`` and ``Exception`` class calls.
-* Copy the class constants into the ``libraries/s3.php`` file.
+Example:
+```php
+S3::put_object($string, $bucket, $path, S3::ACL_PUBLIC_READ);
+```
