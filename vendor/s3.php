@@ -372,7 +372,7 @@ class S3
 
 		if ($location !== false)
 		{
-			$dom = new DOMDocument;
+			$dom = new \DomDocument;
 			$createBucketConfiguration = $dom->createElement('CreateBucketConfiguration');
 			$locationConstraint = $dom->createElement('LocationConstraint', $location);
 			$createBucketConfiguration->appendChild($locationConstraint);
@@ -707,7 +707,7 @@ class S3
 			if (!$aclReadSet || !$aclWriteSet) self::setAccessControlPolicy($targetBucket, '', $acp);
 		}
 
-		$dom = new DOMDocument;
+		$dom = new \DomDocument;
 		$bucketLoggingStatus = $dom->createElement('BucketLoggingStatus');
 		$bucketLoggingStatus->setAttribute('xmlns', 'http://s3.amazonaws.com/doc/2006-03-01/');
 		if ($targetBucket !== null)
@@ -814,7 +814,7 @@ class S3
 	*/
 	public static function setAccessControlPolicy($bucket, $uri = '', $acp = array())
 	{
-		$dom = new DOMDocument;
+		$dom = new \DomDocument;
 		$dom->formatOutput = true;
 		$accessControlPolicy = $dom->createElement('AccessControlPolicy');
 		$accessControlList = $dom->createElement('AccessControlList');
@@ -1388,14 +1388,14 @@ class S3
 
 
 	/**
-	* Get a InvalidationBatch DOMDocument
+	* Get a InvalidationBatch \DomDocument
 	*
 	* @internal Used to create XML in invalidateDistribution()
 	* @param array $paths Paths to objects to invalidateDistribution
 	* @return string
 	*/
 	private static function __getCloudFrontInvalidationBatchXML($paths, $callerReference = '0') {
-		$dom = new DOMDocument('1.0', 'UTF-8');
+		$dom = new \DomDocument('1.0', 'UTF-8');
 		$dom->formatOutput = true;
 		$invalidationBatch = $dom->createElement('InvalidationBatch');
 		foreach ($paths as $path)
@@ -1408,7 +1408,7 @@ class S3
 
 
 	/**
-	* Get a DistributionConfig DOMDocument
+	* Get a DistributionConfig \DomDocument
 	*
 	* http://docs.amazonwebservices.com/AmazonCloudFront/latest/APIReference/index.html?PutConfig.html
 	*
@@ -1425,7 +1425,7 @@ class S3
 	*/
 	private static function __getCloudFrontDistributionConfigXML($bucket, $enabled, $comment, $callerReference = '0', $cnames = array(), $defaultRootObject = null, $originAccessIdentity = null, $trustedSigners = array())
 	{
-		$dom = new DOMDocument('1.0', 'UTF-8');
+		$dom = new \DomDocument('1.0', 'UTF-8');
 		$dom->formatOutput = true;
 		$distributionConfig = $dom->createElement('DistributionConfig');
 		$distributionConfig->setAttribute('xmlns', 'http://cloudfront.amazonaws.com/doc/2010-11-01/');

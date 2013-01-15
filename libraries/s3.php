@@ -27,7 +27,8 @@ class S3
 		$config = Config::get('s3'); // from application, not bundle
 		
 		// build object
-		$s3 = new Amazon\S3($config['access_key'], $config['secret_key']);
+		// now with ability to define SSL and endpoints
+		$s3 = new Amazon\S3($config['access_key'], $config['secret_key'], $config['use_ssl'], ($config['region'] == 'EU' ? 's3-eu-west-1.amazonaws.com' : 's3.amazonaws.com') );
 		
 		// return
 		return call_user_func_array(array($s3, self::camelize($method)), $args);
