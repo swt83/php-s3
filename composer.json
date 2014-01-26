@@ -12,10 +12,10 @@
         "php": ">=5.4.0"
     },
     "autoload": {
-        "classmap": {
+        "classmap": [
             "vendor/notebowl/laravel-s3/vendor",
             "vendor/notebowl/laravel-s3/libraries",
             "vendor/notebowl/laravel-s3/start.php"
-        }
+        ]
     }
 }
