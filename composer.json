@@ -13,9 +13,9 @@
     },
     "autoload": {
         "classmap": [
-            "vendor/notebowl/laravel-s3/vendor",
-            "vendor/notebowl/laravel-s3/libraries",
-            "vendor/notebowl/laravel-s3/start.php"
+            "vendor",
+            "libraries",
+            "start.php"
         ]
     }
 }
