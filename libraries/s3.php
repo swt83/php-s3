@@ -35,6 +35,12 @@ class S3
 	
 	private static function camelize($word)
 	{
-		return lcfirst(preg_replace('/(^|_)(.)/e', "strtoupper('\\2')", strval($word)));
+		$result = preg_replace_callback(
+    		"/(^|_)(.)/",
+    		function($m) { return strtoupper($m[2]); },
+    		strval($word)
+		);
+
+		return lcfirst($result);
 	}
 }
