@@ -1,0 +1,21 @@
+{
+    "name": "notebowl/laravel-s3",
+    "description": "Simple wrapper for Amazon S3",
+    "keywords": ["amazon", "laravel", "s3"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Slaughter"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+    },
+    "autoload": {
+        "classmap": {
+            "vendor/notebowl/laravel-s3/vendor",
+            "vendor/notebowl/laravel-s3/libraries",
+            "vendor/notebowl/laravel-s3/start.php"
+        }
+    }
+}
