@@ -11,30 +11,36 @@
 
 class S3
 {
-	const ACL_PRIVATE = 'private';
-	const ACL_PUBLIC_READ = 'public-read';
-	const ACL_PUBLIC_READ_WRITE = 'public-read-write';
-	const ACL_AUTHENTICATED_READ = 'authenticated-read';
-	const STORAGE_CLASS_STANDARD = 'STANDARD';
-	const STORAGE_CLASS_RRS = 'REDUCED_REDUNDANCY';
+    const ACL_PRIVATE = 'private';
+    const ACL_PUBLIC_READ = 'public-read';
+    const ACL_PUBLIC_READ_WRITE = 'public-read-write';
+    const ACL_AUTHENTICATED_READ = 'authenticated-read';
+    const STORAGE_CLASS_STANDARD = 'STANDARD';
+    const STORAGE_CLASS_RRS = 'REDUCED_REDUNDANCY';
 
-	public static function __callStatic($method, $args)
-	{	
-		// include
-		require_once(__DIR__.'/../vendor/s3.php');
-	
-		// load config
-		$config = Config::get('s3'); // from application, not bundle
-		
-		// build object
-		$s3 = new Amazon\S3($config['access_key'], $config['secret_key']);
-		
-		// return
-		return call_user_func_array(array($s3, self::camelize($method)), $args);
-	}
-	
-	private static function camelize($word)
-	{
-		return lcfirst(preg_replace('/(^|_)(.)/e', "strtoupper('\\2')", strval($word)));
-	}
+    public static function __callStatic($method, $args)
+    {   
+        // include
+        require_once(__DIR__.'/../vendor/s3.php');
+    
+        // load config
+        $config = Config::get('s3'); // from application, not bundle
+        
+        // build object
+        $s3 = new Amazon\S3($config['access_key'], $config['secret_key']);
+        
+        // return
+        return call_user_func_array(array($s3, self::camelize($method)), $args);
+    }
+    
+    private static function camelize($word)
+    {
+        $result = preg_replace_callback(
+            "/(^|_)(.)/",
+            function($m) { return strtoupper($m[2]); },
+            strval($word)
+        );
+
+        return lcfirst($result);
+    }
 }
